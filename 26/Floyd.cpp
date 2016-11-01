@@ -6,7 +6,7 @@ int main()
     scanf("%d %d",&n,&e);
     for (i=0;i<n;i++)
     {
-        memset(d[i],0xFF,sizeof(d[i]));
+        memset(d[i],0x3F,sizeof(d[i]));
         ansi[i]=i;
         d[i][i]=0;
     }
@@ -16,11 +16,10 @@ int main()
         if (t<d[i][j]) d[j][i]=d[i][j]=t;
         num[i][j]=num[j][i]=1;
     }
-    memset(&t,0xFF,sizeof(t));
     for (k=0;k<n;k++)
         for (i=0;i<n;i++)
             for (j=0;j<n;j++)
-                if (i!=k && j!=k && d[i][k]<t && d[k][j]<t && d[i][k]+d[k][j]<=d[i][j])
+                if (d[i][k]+d[k][j]<=d[i][j] && i!=k && j!=k)
                 {
                     if(d[i][k]+d[k][j]==d[i][j])
                         num[i][j]+=num[i][k]*num[k][j];
